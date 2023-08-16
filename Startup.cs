@@ -16,7 +16,6 @@ namespace dotnet_vite_vuejs
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
-            var b = env;
             app.UseRouting();
             app.Map("/api", app =>
             {
