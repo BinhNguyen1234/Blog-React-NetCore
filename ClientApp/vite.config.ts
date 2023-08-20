@@ -7,7 +7,7 @@ const aliasFromTsConfig = Object.entries(tsconfig.compilerOptions.paths);
 const aliasForVite = aliasFromTsConfig.map((e) => {
   return {
     find: e[0].replace(/\/\*$/, ''),
-    replacement: e[1][0].replace(/\/\*$/, '')
+    replacement: '/' + e[1][0].replace(/\/\*$/, '')
   };
 });
 console.log(aliasForVite);
@@ -23,7 +23,7 @@ export default defineConfig({
       }
     }
   },
-  base: './',
+
   resolve: {
     extensions: ['.ts', '.tsx', '.slice','.svg'],
     
