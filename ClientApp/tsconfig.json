@@ -7,13 +7,18 @@
     "skipLibCheck": true,
     "allowJs": false,
     "jsx": "react-jsx",
-    /* Bundler mode */
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@store/*": ["src/store/*"]
+    },
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    /* Linting */
+
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

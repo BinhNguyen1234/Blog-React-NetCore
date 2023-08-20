@@ -1,9 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
-import App from './home/App.tsx';
+import HomeView from './home/home.view.tsx';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />
+    element: <HomeView />
+  },
+  {
+    path: '/home',
+    element: <HomeView />
   }
 ]);
 export default router;
