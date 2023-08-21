@@ -3,14 +3,17 @@ import { increment } from '@store/counter/counter.slice.ts';
 import reactLogo from '@assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.style.css';
+
 interface AppProps {
   value: number;
 }
 function App({ value }: AppProps) {
   const dispatch = useDispatch();
+  console.log(import.meta.env);
   return (
     <>
       <div>
+        
         <a href='https://vitejs.dev' target='_blank'>
           <img src={viteLogo} className='logo' alt='Vite logo' />
         </a>
@@ -18,7 +21,7 @@ function App({ value }: AppProps) {
           <img src={reactLogo} className='logo react' alt='React logo' />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>{import.meta.env.VITE_APP_TITLE}</h1>
       <div className='card'>
         <button onClick={() => {
           console.log(123);
