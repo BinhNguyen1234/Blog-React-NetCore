@@ -2,7 +2,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import tsconfig from './tsconfig.json';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+
+import nodeResolve from '@rollup/plugin-node-resolve';
 const aliasFromTsConfig = Object.entries(tsconfig.compilerOptions.paths);
 const aliasForVite = aliasFromTsConfig.map((e) => {
   return {
@@ -13,7 +14,7 @@ const aliasForVite = aliasFromTsConfig.map((e) => {
 console.log(aliasForVite);
 const PORT_FOR_PROXY = process.env.ASPNETCORE_HTTPS_PORT;
 export default defineConfig({
-  plugins: [react(), basicSsl(),nodeResolve()],
+  plugins: [nodeResolve(),react(), basicSsl()],
   server: {
     https: true,
     proxy: {
