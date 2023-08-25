@@ -1,14 +1,8 @@
-using dotnet_vite_vuejs.Model;
-using System;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.IO;
-using System.Configuration;
+
 
 namespace dotnet_vite_vuejs
 {

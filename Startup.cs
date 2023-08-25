@@ -16,26 +16,25 @@ namespace dotnet_vite_vuejs
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
-            app.UseRouting();
             app.Map("/api", app =>
             {
                 app.UseRouting();
                 app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Test}/{action=Index}/{id?}");
-                endpoints.MapGet("", async context =>
                 {
-                    await context.Response.WriteAsync("rootAPi");
+                    endpoints.MapControllerRoute(name: "default", pattern: "{controller=Test}/{action=Index}/{id?}");
+                    
+                    endpoints.MapGet("/12", async context =>
+                    {
+                        await context.Response.WriteAsync("12");
+                    });
                 });
-                endpoints.MapGet("/12", async context =>
+                app.Run(async (context) =>
                 {
-                    await context.Response.WriteAsync("12");
+                    await context.Response.WriteAsync("api is ready");
                 });
-            });
             });
 #if DEBUG
 #elif RELEASE
-            app.UseStaticFiles();
             app.Map("", app =>
             {
                 StaticFileOptions ClientApp = new StaticFileOptions
