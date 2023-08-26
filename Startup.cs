@@ -23,12 +23,14 @@ namespace dotnet_vite_vuejs
                 {
                     endpoints.MapControllerRoute(name: "default", pattern: "{controller=Test}/{action=Index}/{id?}");
                     
-                    endpoints.MapGet("/12", async context =>
+                    endpoints.MapGet("/number/{value}", async context =>
                     {
-                        await context.Response.WriteAsync("12");
+                        var value = context.Request.RouteValues["value"];
+                        value = null;
+                        await context.Response.WriteAsync(value?.ToString());
                     });
                 });
-                app.Run(async (context) =>
+                app.Run(async context =>
                 {
                     await context.Response.WriteAsync("api is ready");
                 });

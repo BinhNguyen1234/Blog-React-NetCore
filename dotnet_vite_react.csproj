@@ -4,6 +4,7 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>disable</ImplicitUsings>
+		<WarningsAsErrors>nullable</WarningsAsErrors>
 		<SpaRoot>ClientApp\</SpaRoot>
 		<DistFolder>ClientApp\dist\**</DistFolder>
 		<ModeBuild>$(Configuration)</ModeBuild>
