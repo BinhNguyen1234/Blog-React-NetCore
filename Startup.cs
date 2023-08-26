@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
+using dotnet_vite_react;
+
 namespace dotnet_vite_vuejs
 {
     public class Startup
@@ -26,9 +30,11 @@ namespace dotnet_vite_vuejs
                     endpoints.MapGet("/number/{value}", async context =>
                     {
                         var value = context.Request.RouteValues["value"];
-                        value = null;
-                        await context.Response.WriteAsync(value?.ToString());
+                        if (value != null)
+                        await context.Response.WriteAsync((string)value);
                     });
+                    endpoints.MapControllers();
+                   
                 });
                 app.Run(async context =>
                 {
@@ -60,6 +66,14 @@ namespace dotnet_vite_vuejs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<Context>(optionsBuilder =>
+            {
+                string? connectionString = _builder.Configuration.GetConnectionString("LocalDb");
+                if(connectionString != null)
+                {
+                    optionsBuilder.UseSqlServer(connectionString);
+                }
+            });
         }
     }
 }
