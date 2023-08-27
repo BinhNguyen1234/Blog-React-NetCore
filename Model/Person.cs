@@ -1,13 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_vite_vuejs.Model
 {
+	[Table("Persons", Schema = "dbo"), ]
 	public class Persons
 	{
-		[Key]
-		public int PersonId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+		public Guid PersonId { get; set; }
 		[Required]
 		[StringLength(50)]
 		public string? LastName { get; set; }
