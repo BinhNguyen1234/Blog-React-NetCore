@@ -10,24 +10,28 @@ using System.Drawing.Text;
 
 namespace dotnet_vite_vuejs.Controllers
 {
-    public class Test: ControllerBase
+
+    [Route("[controller]/[action]")]
+    [ApiController]
+    public class Test : ControllerBase
     {
         private IServiceProvider _services;
-    
+
         public Test(IServiceProvider services)
         {
             _services = services;
         }
 
-        public IActionResult post()
+        [HttpGet("{name}")]
+        
+        public IActionResult post([FromRoute] string name)
         {
-            string? name = HttpContext.Request.RouteValues["name"]?.ToString();
-           
             using (var context = _services.GetService<Context>())
             {
-                if(context != null)
+                if (context != null)
                 {
-                    Persons person = new Persons() { 
+                    Persons person = new Persons()
+                    {
                         PersonId = Guid.NewGuid(),
                         LastName = "Nguyen",
                         FirstName = name,
@@ -43,8 +47,10 @@ namespace dotnet_vite_vuejs.Controllers
     }
 }
 
-    public class Name : ControllerBase
+[Route("[controller]/[action]")]
+public class Name : ControllerBase
 {
+    [HttpGet]
     public IActionResult get()
     {
         return Content("binh ");

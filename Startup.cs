@@ -8,7 +8,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using dotnet_vite_react;
-
+using Swashbuckle.Swagger;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Components;
+using dotnet_vite_react.Helper.Swagger;
 namespace dotnet_vite_vuejs
 {
     public class Startup
@@ -42,6 +45,11 @@ namespace dotnet_vite_vuejs
                 });
             });
 #if DEBUG
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api v1");
+            });
 #elif RELEASE
             app.Map("", app =>
             {
@@ -69,11 +77,20 @@ namespace dotnet_vite_vuejs
             services.AddDbContext<Context>(optionsBuilder =>
             {
                 string? connectionString = _builder.Configuration.GetConnectionString("LocalDb");
-                if(connectionString != null)
+                if (connectionString != null)
                 {
                     optionsBuilder.UseSqlServer(connectionString);
                 }
             });
+#if DEBUG
+            services.AddSwaggerGen(c =>
+            {
+                c.DocumentFilter<SwaggerPathPrefixInsertDocumentFilter>("api");
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            }
+            );
+             
+#endif
         }
     }
 }
