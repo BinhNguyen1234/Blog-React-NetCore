@@ -70,9 +70,4 @@
 		<PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Model\Mapping\" />
-	  <Folder Include="Model\Conceptual\" />
-	  <Folder Include="Model\Storage\" />
-	</ItemGroup>
 </Project>
