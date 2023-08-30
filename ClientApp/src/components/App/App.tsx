@@ -3,7 +3,7 @@ import { increment } from '@store/counter/counter.slice.ts';
 import reactLogo from '@assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.style.css';
-
+import.meta.env.VITE_APP_TITLE;
 interface AppProps {
   value: number;
 }
