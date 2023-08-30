@@ -1,26 +1,27 @@
-import { ReactElement } from 'react';
+import { ReactElement, useMemo } from 'react';
 
 interface sideBarElementProps {
-    childrens: ReactElement[] | null;
-    textContent: string;
+    children: ReactElement | null;
+    textContent?: string
 }
 
-function SideBarElement({ childrens, textContent }: sideBarElementProps) {
-    const WrappedChildre = Array.isArray(childrens) ? (
-        childrens.map((child) => {
-            return <li>{child}</li>;
-        })
-    ) : (
-        <li>{childrens}</li>
-    );
+function SideBarElement({ children, textContent }: sideBarElementProps) {
+    const wrappedChildres = useMemo(() => {
+        return Array.isArray(children) ? (
+            children.map((child) => {
+                return <li>{child}</li>;
+            })
+        ) : (
+            <li>children</li>
+        );
+    }, [children]);
     return (
         <>
             <ul>
                 {textContent}
-                {WrappedChildre}
+                {wrappedChildres}
             </ul>
         </>
     );
 }
-
 export default SideBarElement;

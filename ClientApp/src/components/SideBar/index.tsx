@@ -1,17 +1,18 @@
-import { ReactElement, useMemo } from 'react';
-
+import { useMemo, ReactElement } from 'react';
 interface sideBarProps {
-    children: ReactElement[] | null;
+    children: ReactElement[] | ReactElement;
 }
 
 function SideBar({ children }: sideBarProps) {
-    const wrappedChildrens = useMemo(
-        () =>
-            children?.map((child) => {
+    const wrappedChildrens = useMemo(() => {
+        return Array.isArray(children) ? (
+            children.map((child) => {
                 return <li>{child}</li>;
-            }),
-        [children]
-    );
+            })
+        ) : (
+            <li>{children}</li>
+        );
+    }, [children]);
     return (
         <>
             <ul>{wrappedChildrens}</ul>

@@ -8,10 +8,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using dotnet_vite_react;
+#if DEBUG
 using Swashbuckle.Swagger;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Components;
 using dotnet_vite_react.Helper.Swagger;
+#endif
 namespace dotnet_vite_vuejs
 {
     public class Startup

@@ -10,7 +10,12 @@ const aliasForVite = aliasFromTsConfig.map((e) => {
         find: e[0].replace(/\/\*$/, ''),
         replacement: '/' + e[1][0].replace(/\/\*$/, '')
     };
-});
+}).concat(
+    {
+        find: "src",
+        replacement: "/src"
+    }
+);
 console.log(aliasForVite);
 const PORT_FOR_PROXY = process.env.ASPNETCORE_HTTPS_PORT;
 export default defineConfig({
@@ -27,7 +32,7 @@ export default defineConfig({
 
     resolve: {
         extensions: ['.ts', '.tsx', '.slice', '.svg'],
-
         alias: aliasForVite
-    }
+    },
+    root: "./"
 });
