@@ -1,17 +1,16 @@
 import SideBar from '@components/SideBar/index';
-import SideBarElement from '@components/SideBar/Element/index'; 
-
+import {  Button } from '@mui/base';
 function SideBarContainer() {
     return (
         <>
             <SideBar>
-                <SideBarElement>
+                <Button className='bg-green-600 rounded-md py-1 px-4...'>
                     <div>1</div>
-                </SideBarElement>
+                </Button>
 
-                <SideBarElement>
+                <Button>
                     <div>2</div>
-                </SideBarElement>
+                </Button>
             </SideBar>
         </>
     );
