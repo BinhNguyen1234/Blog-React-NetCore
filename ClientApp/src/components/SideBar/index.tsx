@@ -6,8 +6,8 @@ interface sideBarProps {
 function SideBar({ children }: sideBarProps) {
     const wrappedChildrens = useMemo(() => {
         return Array.isArray(children) ? (
-            children.map((child) => {
-                return <li>{child}</li>;
+            children.map((child, i) => {
+                return <li key={i}>{child}</li>;
             })
         ) : (
             <li>{children}</li>

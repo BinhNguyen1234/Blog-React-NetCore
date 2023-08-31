@@ -4,7 +4,7 @@ function SideBarContainer() {
     return (
         <>
             <SideBar>
-                <Button className='bg-green-600 rounded-md py-1 px-4...'>
+                <Button className='text-3xl font-bold underline text-center'>
                     <div>1</div>
                 </Button>
 

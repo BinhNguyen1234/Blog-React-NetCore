@@ -8,11 +8,11 @@ interface sideBarElementProps {
 function SideBarElement({ children, textContent }: sideBarElementProps) {
     const wrappedChildres = useMemo(() => {
         return Array.isArray(children) ? (
-            children.map((child) => {
-                return <li>{child}</li>;
+            children.map((child,i) => {
+                return <li key={i}>{child}</li>;
             })
         ) : (
-            <li>children</li>
+            <li>{children}</li>
         );
     }, [children]);
     return (
