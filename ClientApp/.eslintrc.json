@@ -19,8 +19,8 @@
         "indent": ["warn", 4],
         "arrow-body-style": ["error", "always"],
         "object-curly-spacing": ["error", "always"],
-        "default-case-last": ["error", "always"],
-        "no-var": ["error", "always"],
-        "no-debugger": ["warn", "always"]
+        "default-case-last": ["error"],
+        "no-var": [2],
+        "no-debugger": ["warn"]
     }
 }

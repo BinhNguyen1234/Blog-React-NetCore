@@ -12,8 +12,8 @@ const aliasForVite = aliasFromTsConfig.map((e) => {
     };
 }).concat(
     {
-        find: "src",
-        replacement: "/src"
+        find: 'src',
+        replacement: '/src'
     }
 );
 console.log(aliasForVite);
@@ -34,5 +34,5 @@ export default defineConfig({
         extensions: ['.ts', '.tsx', '.slice', '.svg'],
         alias: aliasForVite
     },
-    root: "./"
+    root: './'
 });
