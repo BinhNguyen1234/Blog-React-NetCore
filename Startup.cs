@@ -14,7 +14,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Components;
 using dotnet_vite_react.Helper.Swagger;
 #endif
-namespace dotnet_vite_vuejs
+namespace dotnet_vite_react
 {
     public class Startup
     {
@@ -30,8 +30,6 @@ namespace dotnet_vite_vuejs
                 app.UseRouting();
                 app.UseEndpoints(endpoints =>
                 {
-                    endpoints.MapControllerRoute(name: "default", pattern: "{controller=Test}/{action=Index}/{id?}");
-                    
                     endpoints.MapGet("/number/{value}", async context =>
                     {
                         var value = context.Request.RouteValues["value"];

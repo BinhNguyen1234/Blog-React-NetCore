@@ -1,4 +1,4 @@
-﻿namespace dotnet_vite_vuejs
+﻿namespace dotnet_vite_react
 {
     public class AppSettings
     {

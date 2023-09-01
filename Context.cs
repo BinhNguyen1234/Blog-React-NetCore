@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using dotnet_vite_vuejs.Model;
+using dotnet_vite_react.Model;
 using Microsoft.Extensions.Logging;
 
 namespace dotnet_vite_react
@@ -13,6 +13,9 @@ namespace dotnet_vite_react
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
             optionsBuilder.UseLoggerFactory(loggerFactory);
         }
-        public DbSet<Persons> Person { get; set; }
+        public DbSet<Student> Persons { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Course> Courses { get; set; }
+
     }
 }

@@ -4,45 +4,45 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using dotnet_vite_react;
 using System.Linq;
-using dotnet_vite_vuejs.Model;
+using Model = dotnet_vite_react.Model;
 using Microsoft.AspNetCore.Http;
 using System.Drawing.Text;
+using Microsoft.AspNetCore.Routing;
 
-namespace dotnet_vite_vuejs.Controllers
+namespace dotnet_vite_react.Controllers
 {
 
     [Route("[controller]/[action]")]
     [ApiController]
-    public class Test : ControllerBase
+    public class Student : ControllerBase
     {
         private IServiceProvider _services;
 
-        public Test(IServiceProvider services)
+        public Student(IServiceProvider services)
         {
             _services = services;
         }
 
-        [HttpGet("{name}")]
-        
-        public IActionResult post([FromRoute] string name)
+        [HttpGet]
+        [Route("{name}")]
+        [ActionName("info")]
+        public IActionResult post([FromRoute] string? name)
         {
             using (var context = _services.GetService<Context>())
             {
                 if (context != null)
                 {
-                    Persons person = new Persons()
+                    Model.Student newStudent = new Model.Student()
                     {
-                        PersonId = Guid.NewGuid(),
-                        LastName = "Nguyen",
-                        FirstName = name,
-                        Address = "VietNam",
-                        City = "DN"
+                        FirstName = "Binh",
+                        LastName = "Nguyen"
                     };
-                    context.Add(person);
+                    context.Add(newStudent);
                     context.SaveChanges();
+                    return Content("name: " + name);
                 }
+                else return UnprocessableEntity();
             }
-            return Content("test ");
         }
     }
 }
@@ -50,10 +50,10 @@ namespace dotnet_vite_vuejs.Controllers
 [Route("[controller]/[action]")]
 public class Name : ControllerBase
 {
-    [HttpGet]
-    public IActionResult get()
+    [HttpGet("{name}")]
+    public IActionResult get([FromRoute] string name)
     {
-        return Content("binh ");
+        return Content("name: " + name);
     }
 }
 
