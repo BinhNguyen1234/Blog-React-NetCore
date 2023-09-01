@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using dotnet_vite_react;
+using Microsoft.AspNetCore.Routing;
 #if DEBUG
 using Swashbuckle.Swagger;
 using Microsoft.OpenApi.Models;
@@ -73,6 +74,7 @@ namespace dotnet_vite_react
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<RouteOptions>((options) => { options.LowercaseUrls = true; });
             services.AddControllers();
             services.AddDbContext<Context>(optionsBuilder =>
             {
