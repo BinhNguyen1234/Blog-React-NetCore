@@ -8,13 +8,16 @@ using Model = dotnet_vite_react.Model;
 using Microsoft.AspNetCore.Http;
 using System.Drawing.Text;
 using Microsoft.AspNetCore.Routing;
+using System.IO;
+using System.Threading.Tasks;
+using System.Text;
 
 namespace dotnet_vite_react.Controllers
 {
 
     [Route("[controller]/[action]")]
     [ApiController]
-    public class Student : ControllerBase
+    public class Student : Controller
     {
         private IServiceProvider _services;
 
@@ -26,7 +29,7 @@ namespace dotnet_vite_react.Controllers
         [HttpGet]
         [Route("{name}")]
         [ActionName("info")]
-        public IActionResult post([FromRoute] string? name)
+        public IActionResult getInfo([FromRoute] string? name)
         {
             using (var context = _services.GetService<Context>())
             {
@@ -43,14 +46,23 @@ namespace dotnet_vite_react.Controllers
                 }
                 else return UnprocessableEntity();
             }
+            
+        }
+        [HttpPost]
+        [ActionName("create")]
+        public async Task<IActionResult> postInfo([FromBody] string body)
+        {
+            Request.Body.Position = 0;
+            var reader = await new StreamReader(Request.Body,Encoding.UTF8).ReadToEndAsync();
+            return Content(reader);
         }
     }
 }
 
 [Route("[controller]/[action]")]
-public class Name : ControllerBase
+public class Course : ControllerBase
 {
-    [HttpGet("{name}")]
+    [HttpPost]
     public IActionResult get([FromRoute] string name)
     {
         return Content("name: " + name);

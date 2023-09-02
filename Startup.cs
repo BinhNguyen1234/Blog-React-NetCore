@@ -26,6 +26,11 @@ namespace dotnet_vite_react
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
+            app.Use((context, next) =>
+            {
+                context.Request.EnableBuffering();
+                return next();
+            });
             app.Map("/api", app =>
             {
                 app.UseRouting();
