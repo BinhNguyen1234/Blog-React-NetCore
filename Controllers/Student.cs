@@ -46,26 +46,26 @@ namespace dotnet_vite_react.Controllers
                 }
                 else return UnprocessableEntity();
             }
-            
+
         }
         [HttpPost]
         [ActionName("create")]
         public async Task<IActionResult> postInfo([FromBody] string body)
         {
             Request.Body.Position = 0;
-            var reader = await new StreamReader(Request.Body,Encoding.UTF8).ReadToEndAsync();
+            var reader = await new StreamReader(Request.Body, Encoding.UTF8).ReadToEndAsync();
             return Content(reader);
         }
     }
-}
-
-[Route("[controller]/[action]")]
-public class Course : ControllerBase
-{
-    [HttpPost]
-    public IActionResult get([FromRoute] string name)
+    [Route("[controller]/[action]")]
+    public class Course : ControllerBase
     {
-        return Content("name: " + name);
+        [HttpPost]
+        public IActionResult get([FromRoute] string name)
+        {
+            return Content("name: " + name);
+        }
+
     }
 }
 
