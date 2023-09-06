@@ -79,22 +79,31 @@ namespace dotnet_vite_react.Controllers
                         Title = body.TitleCourse,
                         Credits = body.Credits
                     };
-                    Model.Enrollment enrollment = new()
-                    {
-                        Grade = body.Grade
-                    };
                     Model.Student student = new()
                     {
                         LastName = body.LastName,
-                        FirstName = body.FirstName
+                        FirstName = body.FirstName,
+                        EnrollmentDate = DateTime.Now,
                     };
+                    Model.Enrollment enrollment = new()
+                    {
+                        Grade = body.Grade,
+                        Course = course,
+                        Student = student
+                    };
+                    
                     if (context != null)
                     {
                         context.Add(course);
                         context.Add(enrollment);
                         context.Add(student);
+                        context.SaveChanges();
+                        return Content("Sucess");
+                    } else
+                    {
+                        return NotFound("faild");
                     }
-                    return Content("Sucess");
+                    
 
                 }
             } catch (Exception ex)

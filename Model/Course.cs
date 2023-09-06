@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 namespace dotnet_vite_react.Model
 {
-    [Table("Course", Schema = "dbo"),]
+    [Table("Courses", Schema = "dbo"),]
     public class Course
     {
         [Key]
