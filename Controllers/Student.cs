@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using System.Text.Json;
+using dotnet_vite_react.Model;
 
 namespace dotnet_vite_react.Controllers
 {
@@ -61,19 +62,57 @@ namespace dotnet_vite_react.Controllers
     [Route("[controller]/[action]")]
     public class Course : ControllerBase
     {
+        private IServiceProvider _service;
+        public Course(IServiceProvider service) {  
+            _service = service; 
+        }
         [HttpPost]
         [ActionName("register")]
-        public IActionResult registerCourse([FromBody] Bodyy body)
+        public IActionResult registerCourse([FromBody] RegisterForm body)
         {
+            try
+            {
+                using (var context = _service.GetService<Context>())
+                {
+                    Model.Course course = new()
+                    {
+                        Title = body.TitleCourse,
+                        Credits = body.Credits
+                    };
+                    Model.Enrollment enrollment = new()
+                    {
+                        Grade = body.Grade
+                    };
+                    Model.Student student = new()
+                    {
+                        LastName = body.LastName,
+                        FirstName = body.FirstName
+                    };
+                    if (context != null)
+                    {
+                        context.Add(course);
+                        context.Add(enrollment);
+                        context.Add(student);
+                    }
+                    return Content("Sucess");
 
+                }
+            } catch (Exception ex)
+            {
+                return NotFound(ex.ToString());
+            }
 
-            return Content("name: " + body.name);
+            
         }
 
     }
-     public class Bodyy
-    {
-        public required string name { get; set; }
-    }
 }
 
+public class RegisterForm
+{
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
+    public required string TitleCourse { get; set; }
+    public required string Credits { get; set; }
+    public required string Grade { get; set; }
+}

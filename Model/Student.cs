@@ -16,6 +16,8 @@ namespace dotnet_vite_react.Model
 		public required string LastName { get; set; }
 		[Required]
 		public required string FirstName { get; set; }
+		[Column(TypeName = "date")]
+		public DateTime? EnrollmentDate { get; set; }
 		public virtual ICollection<Enrollment>? Enrollments { get; set; }
     }
 }
