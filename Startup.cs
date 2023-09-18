@@ -83,7 +83,15 @@ namespace dotnet_vite_react
             services.AddControllers();
             services.AddDbContext<Context>(optionsBuilder =>
             {
-                string? connectionString = _builder.Configuration.GetConnectionString("LocalDb");
+                string? connectionString = _builder.Configuration.GetConnectionString("NonPool");
+                if (connectionString != null)
+                {
+                    optionsBuilder.UseSqlServer(connectionString);
+                }
+            });
+            services.AddDbContextPool<PoolContext>(optionsBuilder =>
+            {
+                string? connectionString = _builder.Configuration.GetConnectionString("Pool");
                 if (connectionString != null)
                 {
                     optionsBuilder.UseSqlServer(connectionString);

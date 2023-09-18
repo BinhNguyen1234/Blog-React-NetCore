@@ -32,7 +32,7 @@ namespace dotnet_vite_react.Controllers
         [ActionName("info")]
         public IActionResult getInfo([FromRoute] string? name)
         {
-            using (var context = _services.GetService<Context>())
+            using (var context = _services.GetService<PoolContext>())
             {
                 if (context != null)
                 {
@@ -72,7 +72,7 @@ namespace dotnet_vite_react.Controllers
         {
             try
             {
-                using (var context = _service.GetService<Context>())
+                using (var context = _service.GetService<PoolContext>())
                 {
                     Model.Course course = new()
                     {
