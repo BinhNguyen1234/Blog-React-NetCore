@@ -2,12 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace dotnet_vite_react
+namespace dotnet_vite_react.AppContext
 {
     public class Context : DbContext
     {
-        public Context(DbContextOptions<Context> options) : base(options) {
-            
+        public Context(DbContextOptions<Context> options) : base(options)
+        {
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

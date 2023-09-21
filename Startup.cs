@@ -7,8 +7,11 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
-using dotnet_vite_react;
 using Microsoft.AspNetCore.Routing;
+using dotnet_vite_react.AppContext;
+using dotnet_vite_react.UnitOfWorkApp;
+using dotnet_vite_react.Repository;
+using dotnet_vite_react.Model;
 #if DEBUG
 using Swashbuckle.Swagger;
 using Microsoft.OpenApi.Models;
@@ -97,6 +100,11 @@ namespace dotnet_vite_react
                     optionsBuilder.UseSqlServer(connectionString);
                 }
             });
+
+            services.AddTransient<IBaseRepository<Enrollment>, Repository<Enrollment>>();
+            services.AddTransient<IBaseRepository<Student>, Repository<Student>>();
+            services.AddTransient<IBaseRepository<Course>, Repository<Course>>();
+            services.AddTransient<UnitOfWork>();
 #if DEBUG
             services.AddSwaggerGen(c =>
             {
