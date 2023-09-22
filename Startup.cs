@@ -100,11 +100,11 @@ namespace dotnet_vite_react
                     optionsBuilder.UseSqlServer(connectionString);
                 }
             });
+            services.AddScoped<UnitOfWork>();
+            services.AddScoped<IBaseRepository<Enrollment>, Repository<Enrollment>>();
+            services.AddScoped<IBaseRepository<Student>, Repository<Student>>();
+            services.AddScoped<IBaseRepository<Course>, Repository<Course>>();
 
-            services.AddTransient<IBaseRepository<Enrollment>, Repository<Enrollment>>();
-            services.AddTransient<IBaseRepository<Student>, Repository<Student>>();
-            services.AddTransient<IBaseRepository<Course>, Repository<Course>>();
-            services.AddTransient<UnitOfWork>();
 #if DEBUG
             services.AddSwaggerGen(c =>
             {

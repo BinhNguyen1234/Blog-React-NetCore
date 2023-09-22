@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System.Text.Json;
 using dotnet_vite_react.Model;
 using dotnet_vite_react.AppContext;
+using dotnet_vite_react.UnitOfWorkApp;
 
 namespace dotnet_vite_react.Controllers
 {
@@ -21,9 +22,11 @@ namespace dotnet_vite_react.Controllers
     public class Student : Controller
     {
         private IServiceProvider _services;
+        private UnitOfWork _unitOfWork;
 
-        public Student(IServiceProvider services)
+        public Student(IServiceProvider services, UnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
             _services = services;
         }
 
@@ -63,7 +66,12 @@ namespace dotnet_vite_react.Controllers
     public class Course : ControllerBase
     {
         private IServiceProvider _service;
-        public Course(IServiceProvider service) {  
+        private UnitOfWork _unitOfWork;
+        public Course(
+            IServiceProvider service,
+            UnitOfWork unitOfWork
+            ) {  
+            _unitOfWork = unitOfWork;
             _service = service; 
         }
         [HttpPost]
@@ -72,7 +80,41 @@ namespace dotnet_vite_react.Controllers
         {
             try
             {
-                using (var context = _service.GetService<PoolContext>())
+                //using (var context = _service.GetService<PoolContext>())
+                //{
+                //    Model.Course course = new()
+                //    {
+                //        Title = body.TitleCourse,
+                //        Credits = body.Credits
+                //    };
+                //    Model.Student student = new()
+                //    {
+                //        LastName = body.LastName,
+                //        FirstName = body.FirstName,
+                //        EnrollmentDate = DateTime.Now,
+                //    };
+                //    Model.Enrollment enrollment = new()
+                //    {
+                //        Grade = body.Grade,
+                //        Course = course,
+                //        Student = student
+                //    };
+                    
+                //    if (context != null)
+                //    {
+                //        context.Add(course);
+                //        context.Add(enrollment);
+                //        context.Add(student);
+                //        context.SaveChanges();
+                //        return Content("Sucess");
+                //    } else
+                //    {
+                //        return NotFound("faild");
+                //    }
+                 
+
+                //}
+                using (_unitOfWork)
                 {
                     Model.Course course = new()
                     {
@@ -91,21 +133,12 @@ namespace dotnet_vite_react.Controllers
                         Course = course,
                         Student = student
                     };
-                    
-                    if (context != null)
-                    {
-                        context.Add(course);
-                        context.Add(enrollment);
-                        context.Add(student);
-                        context.SaveChanges();
-                        return Content("Sucess");
-                    } else
-                    {
-                        return NotFound("faild");
-                    }
-                    
-
+                    _unitOfWork.Add(student);
+                    _unitOfWork.Add(enrollment);
+                    _unitOfWork.Add(course);
+                    _unitOfWork.SaveChages();
                 }
+                return Content("Sucess");
             } catch (Exception ex)
             {
                 return NotFound(ex.ToString());

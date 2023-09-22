@@ -5,29 +5,27 @@ using System.Runtime.CompilerServices;
 namespace dotnet_vite_react.Repository
 {
     public class Repository <T> : IBaseRepository<T> where T : class
-    { 
+    {
+        public DbContext DbContext { get; set; }
+        public DbSet<T> dbSet{ get;}
+
+
         public Repository(Context context)
         {
             this.DbContext = context;
+            dbSet = this.DbContext.Set<T>();
         }
 
-        public DbSet<T> DbSet { 
-            get
-            {
-                return DbContext.Set<T>();
-            }
-        }
 
-        public DbContext DbContext { get; set; }
 
         public void Add(T entity)
         {
-            DbSet.Add(entity);
+            dbSet.Add(entity);
         }
 
         public void Delete(T entity)
         {
-            DbSet.Remove(entity);
+            dbSet.Remove(entity);
         }
 
         public T Get(T entity)
@@ -44,7 +42,7 @@ namespace dotnet_vite_react.Repository
     }
     public interface IBaseRepository<T> where T : class
     {
-        DbSet<T> DbSet { get; }
+        DbSet<T> dbSet { get; }
         DbContext DbContext { get; }
         void Add(T entity);
         T Update(T entity);

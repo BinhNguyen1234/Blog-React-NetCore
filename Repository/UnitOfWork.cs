@@ -20,6 +20,10 @@ namespace dotnet_vite_react.UnitOfWorkApp
             this.students = students;
             this.enrollment = enrollment;
         }
+        public void Add<T>(T entity) where T : class
+        {
+            context.Add(entity);
+        }
         public void SaveChages()
         {
             context.SaveChanges();
