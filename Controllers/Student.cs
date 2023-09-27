@@ -1,17 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Linq;
-using Model = dotnet_vite_react.Model;
 using Microsoft.AspNetCore.Routing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Text;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
-using System.Text.Json;
 using dotnet_vite_react.Model;
-using dotnet_vite_react.AppContext;
 using dotnet_vite_react.UnitOfWorkApp;
 
 namespace dotnet_vite_react.Controllers
@@ -35,21 +29,7 @@ namespace dotnet_vite_react.Controllers
         [ActionName("info")]
         public IActionResult getInfo([FromRoute] string? name)
         {
-            using (var context = _services.GetService<PoolContext>())
-            {
-                if (context != null)
-                {
-                    Model.Student newStudent = new ()
-                    {
-                        FirstName = "Binh",
-                        LastName = "Nguyen"
-                    };
-                    context.Add(newStudent);
-                    context.SaveChanges();
-                    return Content("name: " + name);
-                }
-                else return UnprocessableEntity();
-            }
+            return Content("OK");
 
         }
         [HttpPost]
@@ -72,7 +52,7 @@ namespace dotnet_vite_react.Controllers
             UnitOfWork unitOfWork
             ) {  
             _unitOfWork = unitOfWork;
-            _service = service; 
+            _service = service;
         }
         [HttpPost]
         [ActionName("register")]

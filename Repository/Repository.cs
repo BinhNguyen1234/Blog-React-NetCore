@@ -1,13 +1,15 @@
 ﻿using dotnet_vite_react.AppContext;
+using dotnet_vite_react.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.CompilerServices;
 
 namespace dotnet_vite_react.Repository
 {
-    public class Repository <T> : IBaseRepository<T> where T : class
+    public class Repository<T> : IBaseRepository<T> where T : class
     {
         public DbContext DbContext { get; set; }
-        public DbSet<T> dbSet{ get;}
+        public DbSet<T> dbSet { get; }
 
 
         public Repository(Context context)
@@ -49,5 +51,14 @@ namespace dotnet_vite_react.Repository
         void Delete(T entity);
         T Get(T entity);
         void SaveChanges();
+    }
+    public static class RepositoryExtension
+    {
+        public static void AddRegisteredRepository(this IServiceCollection services)
+        {
+            services.AddScoped<IBaseRepository<Enrollment>, Repository<Enrollment>>();
+            services.AddScoped<IBaseRepository<Student>, Repository<Student>>();
+            services.AddScoped<IBaseRepository<Course>, Repository<Course>>();
+        }
     }
 }

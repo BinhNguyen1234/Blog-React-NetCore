@@ -47,10 +47,6 @@ namespace dotnet_vite_react.UnitOfWorkApp
             //}
             //return null;
             PropertyInfo? propertyInfo = type.GetProperties().FirstOrDefault(t => t.PropertyType == typeof(IBaseRepository<T>));
-            if ( propertyInfo != null )
-            {
-
-            }
             return (IBaseRepository<T>?)propertyInfo?.GetValue(this);
 
         }

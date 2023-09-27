@@ -101,9 +101,8 @@ namespace dotnet_vite_react
                 }
             });
             services.AddScoped<UnitOfWork>();
-            services.AddScoped<IBaseRepository<Enrollment>, Repository<Enrollment>>();
-            services.AddScoped<IBaseRepository<Student>, Repository<Student>>();
-            services.AddScoped<IBaseRepository<Course>, Repository<Course>>();
+            services.AddRegisteredRepository();
+
 
 #if DEBUG
             services.AddSwaggerGen(c =>
