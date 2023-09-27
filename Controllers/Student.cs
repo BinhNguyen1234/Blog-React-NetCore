@@ -134,7 +134,8 @@ namespace dotnet_vite_react.Controllers
                         Student = student
                     };
                     _unitOfWork.Add(student);
-                    _unitOfWork.Add(enrollment);
+                    _unitOfWork.GetRepo<Enrollment>()?.Add(enrollment);
+                    
                     _unitOfWork.Add(course);
                     _unitOfWork.SaveChages();
                 }
