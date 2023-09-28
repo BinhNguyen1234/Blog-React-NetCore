@@ -7,6 +7,8 @@ using System.Text;
 using Newtonsoft.Json;
 using dotnet_vite_react.Model;
 using dotnet_vite_react.UnitOfWorkApp;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace dotnet_vite_react.Controllers
 {
@@ -29,6 +31,12 @@ namespace dotnet_vite_react.Controllers
         [ActionName("info")]
         public IActionResult getInfo([FromRoute] string? name)
         {
+            var student = _unitOfWork.GetRepo<StudentEntity>()?.dbSet.Select(x => x.LastName);
+            Console.WriteLine(123);
+            if (student != null){ foreach (var item in student)
+                {
+                    Console.WriteLine(item);
+                } }
             return Content("OK");
 
         }
