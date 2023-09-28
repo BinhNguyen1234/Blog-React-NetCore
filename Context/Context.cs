@@ -16,8 +16,8 @@ namespace dotnet_vite_react.AppContext
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
             optionsBuilder.UseLoggerFactory(loggerFactory);
         }
-        public DbSet<Student> Persons { get; set; }
-        public DbSet<Enrollment> Enrollments { get; set; }
-        public DbSet<Course> Courses { get; set; }
+        public DbSet<StudentEntity> Persons { get; set; }
+        public DbSet<EnrollmentEntity> Enrollments { get; set; }
+        public DbSet<CourseEntity> Courses { get; set; }
     }
 }

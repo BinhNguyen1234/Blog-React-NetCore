@@ -96,25 +96,25 @@ namespace dotnet_vite_react.Controllers
                 //}
                 using (_unitOfWork)
                 {
-                    Model.Course course = new()
+                    CourseEntity course = new()
                     {
                         Title = body.TitleCourse,
                         Credits = body.Credits
                     };
-                    Model.Student student = new()
+                    StudentEntity student = new()
                     {
                         LastName = body.LastName,
                         FirstName = body.FirstName,
                         EnrollmentDate = DateTime.Now,
                     };
-                    Model.Enrollment enrollment = new()
+                    EnrollmentEntity enrollment = new()
                     {
                         Grade = body.Grade,
                         Course = course,
                         Student = student
                     };
                     _unitOfWork.Add(student);
-                    _unitOfWork.GetRepo<Enrollment>()?.Add(enrollment);
+                    _unitOfWork.GetRepo<EnrollmentEntity>()?.Add(enrollment);
                     
                     _unitOfWork.Add(course);
                     _unitOfWork.SaveChages();
