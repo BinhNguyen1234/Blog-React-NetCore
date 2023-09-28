@@ -11,14 +11,14 @@ namespace dotnet_vite_react.UnitOfWorkApp
 {
     public class UnitOfWork : IDisposable
     {
-        public IBaseRepository<Course> course { get; set; }
-        public IBaseRepository<Student> students { get; set; }
-        public IBaseRepository<Enrollment> enrollment { get; set; }
+        public IBaseRepository<CourseEntity> course { get; set; }
+        public IBaseRepository<StudentEntity> students { get; set; }
+        public IBaseRepository<EnrollmentEntity> enrollment { get; set; }
         public Context context { get; set; }
         public UnitOfWork(Context context,
-            IBaseRepository<Course> course,
-            IBaseRepository<Student> students,
-            IBaseRepository<Enrollment> enrollment
+            IBaseRepository<CourseEntity> course,
+            IBaseRepository<StudentEntity> students,
+            IBaseRepository<EnrollmentEntity> enrollment
             ) {
             this.context = context;
             this.course = course;

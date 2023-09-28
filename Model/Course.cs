@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace dotnet_vite_react.Model
 {
     [Table("Courses", Schema = "dbo"),]
-    public class Course
+    public class CourseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,6 +13,6 @@ namespace dotnet_vite_react.Model
         [Required]
         public required string Title { get; set; }
         public required string Credits { get; set; }
-        public virtual ICollection<Enrollment>? Enrollments { get; set; }
+        public virtual ICollection<EnrollmentEntity>? Enrollments { get; set; }
     }
 }

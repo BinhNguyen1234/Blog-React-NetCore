@@ -56,9 +56,9 @@ namespace dotnet_vite_react.Repository
     {
         public static void AddRegisteredRepository(this IServiceCollection services)
         {
-            services.AddScoped<IBaseRepository<Enrollment>, Repository<Enrollment>>();
-            services.AddScoped<IBaseRepository<Student>, Repository<Student>>();
-            services.AddScoped<IBaseRepository<Course>, Repository<Course>>();
+            services.AddScoped<IBaseRepository<EnrollmentEntity>, Repository<EnrollmentEntity>>();
+            services.AddScoped<IBaseRepository<StudentEntity>, Repository<StudentEntity>>();
+            services.AddScoped<IBaseRepository<CourseEntity>, Repository<CourseEntity>>();
         }
     }
 }

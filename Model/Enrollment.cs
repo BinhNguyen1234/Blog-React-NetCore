@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace dotnet_vite_react.Model
 {
     [Table("Enrollments", Schema = "dbo"),]
-    public class Enrollment
+    public class EnrollmentEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
@@ -13,9 +13,9 @@ namespace dotnet_vite_react.Model
         public required string Grade { get; set; }
         //FK Course
         public Guid CourseID { get; set; }
-        public Course? Course { get; set; }
+        public CourseEntity? Course { get; set; }
         // FK Student
         public Guid StudentID { get; set; }
-        public Student? Student { get; set; }
+        public StudentEntity? Student { get; set; }
     }
 }
