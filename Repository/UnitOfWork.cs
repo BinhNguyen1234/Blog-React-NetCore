@@ -2,9 +2,7 @@
 using dotnet_vite_react.Repository;
 using dotnet_vite_react.Model;
 using dotnet_vite_react.AppContext;
-using System.Runtime.CompilerServices;
 using System.Reflection;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 
 namespace dotnet_vite_react.UnitOfWorkApp
