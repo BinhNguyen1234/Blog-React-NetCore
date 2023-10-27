@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Routing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Text;
-using Newtonsoft.Json;
+using System.Text.Json;
 using dotnet_vite_react.Model;
 using dotnet_vite_react.UnitOfWorkApp;
 using System.Linq;
@@ -24,6 +24,7 @@ namespace dotnet_vite_react.Controllers
         {
             _unitOfWork = unitOfWork;
             _services = services;
+            Console.WriteLine("Student Controller ");
         }
 
         [HttpGet]
@@ -31,11 +32,13 @@ namespace dotnet_vite_react.Controllers
         [ActionName("info")]
         public IActionResult getInfo([FromRoute] string? name)
         {
-            var student = _unitOfWork.GetRepo<StudentEntity>()?.dbSet.Select(x => x.LastName);
-            Console.WriteLine(123);
+            //var student = _unitOfWork.GetRepo<StudentEntity>()?.dbSet.Select(x => x.LastName);
+            IEnumerable<StudentEntity>? student = _unitOfWork.GetRepo<StudentEntity>()?.dbSet.Where(x => x.LastName == "string") as IEnumerable<StudentEntity>;
+            //IQueryable<StudentEntity>? student2 = _unitOfWork.GetRepo<StudentEntity>()?.dbSet.Where(x => x.LastName == "string") as IQueryable<StudentEntity>;
             if (student != null){ foreach (var item in student)
                 {
-                    Console.WriteLine(item);
+                    Console.WriteLine(1);
+                    Console.WriteLine(JsonSerializer.Serialize(item));
                 } }
             return Content("OK");
 
@@ -44,10 +47,30 @@ namespace dotnet_vite_react.Controllers
         [ActionName("create")]
         public async Task<IActionResult> postInfo([FromBody] object body)
         {
+            IQueryable<StudentEntity>? student2 = _unitOfWork.GetRepo<StudentEntity>()?.dbSet.Where(x => x.LastName == "string");
+            student2 = student2?.Take(2);
+            IEnumerable<StudentEntity>? student = _unitOfWork.GetRepo<StudentEntity>()?.dbSet.Where(x => x.LastName == "string");
+            student = student?.Take(2);
+            if (student2 != null)
+            {
+                foreach (var item in student2)
+                {
+
+                }
+            }
+            if (student != null)
+            {
+                student.Take(2);
+                foreach (var item in student)
+                {
+
+                }
+            }
             Request.Body.Position = 0;
-            var reader = await new StreamReader(Request.Body, Encoding.UTF8).ReadToEndAsync();
-            dynamic content = JsonConvert.DeserializeObject(reader);
-            return Content(content.First.name);
+            string reader = await new StreamReader(Request.Body, Encoding.UTF8).ReadToEndAsync();
+
+         
+            return Content("OK");
         }
     }
     [Route("[controller]/[action]")]
@@ -61,6 +84,7 @@ namespace dotnet_vite_react.Controllers
             ) {  
             _unitOfWork = unitOfWork;
             _service = service;
+            Console.WriteLine("Student Controller ");
         }
         [HttpPost]
         [ActionName("register")]
