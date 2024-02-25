@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<!--General-->
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<WarningsAsErrors>nullable</WarningsAsErrors>
+		<SpaRoot>ClientApp\</SpaRoot>
+		<DistFolder>ClientApp\dist\**</DistFolder>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<BaseOutputPath>..\bin\</BaseOutputPath>
+		<BaseIntermediateOutputPath>..\obj\</BaseIntermediateOutputPath>
+	</PropertyGroup>
+	<!--For Debug-->
+	<PropertyGroup Condition="$(Configuration)=='Debug'">
+		<FrontEndDebugPort>8000</FrontEndDebugPort>
+		<SpaProxyLaunchCommand>npm run dev -- --strictPort --debug --port $(FrontEndDebugPort)</SpaProxyLaunchCommand>
+		<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+		<SpaProxyServerUrl>https://localhost:$(FrontEndDebugPort)</SpaProxyServerUrl>
+	</PropertyGroup>
+	<!--General-->
+	<Target Name="CheckNodeVerion" BeforeTargets="PrepareForBuild">
+		<!--Ensure Node.js is installed-->
+		<Message Importance="high" Text="Building React App in mode: $(Configuration)">
+		</Message>
+		<Message Importance="high" Text="Checking node version .....">
+		</Message>
+		<Exec Command="node --version" WorkingDirectory="$(SpaRoot)" ContinueOnError="false" StandardOutputImportance="high" LogStandardErrorAsError="true">
+		</Exec>
+	</Target>
+	<Target Name="NodeRunInstall" AfterTargets="CheckNodeVerion">
+		<!--Run install, run node package-->
+		<Message Importance="high" Text="Npm run install is executing...">
+		</Message>
+		<Message Importance="high" Text="Please wait..." />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" StandardOutputImportance="high" ContinueOnError="false" LogStandardErrorAsError="true">
+		</Exec>
+	</Target>
+	<Target Name="NodeRunBuild" AfterTargets="NodeRunInstall">
+		<!--Run build front-end dist file-->
+		<Message Importance="high" Text="Building front end is excuting...">
+		</Message>
+		<Message Importance="high" Text="Please wait..." />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" StandardOutputImportance="high" ContinueOnError="false" LogStandardErrorAsError="true">
+		</Exec>
+	</Target>
+	<ItemGroup Condition="$(Configuration) !='Debug'">
+		<Content Include="$(DistFolder)" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" Link="wwwroot\%(RecursiveDir)\%(Filename)%(Extension)" />
+	</ItemGroup>
+	<!--General-->
+	<ItemGroup>
+		<PackageReference Include="Swashbuckle" Version="5.6.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+		<PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+	</ItemGroup>
+</Project>

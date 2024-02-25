@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "jYod2klinVIzt2ZTryMR85ODRUvMA6EeDAe7fB7a78A=",
+  "Source": "React-Asp-Default.Server",
+  "BasePath": "_content/React-Asp-Default.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\Blog-React-NetCore\\React-Asp-Default\\react-asp-default.client\\react-asp-default.client.esproj",
+      "Version": 2,
+      "Source": "react-asp-default.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Release;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Release;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
