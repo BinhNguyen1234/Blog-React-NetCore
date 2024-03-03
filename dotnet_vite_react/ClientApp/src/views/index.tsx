@@ -1,13 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
-import HomeView from './home/home.view.tsx';
+import SignUp from './SignUp/Signup.view.tsx';
+import SignIn from './SignIn/Signin.view.tsx';
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <HomeView />
+        element: <SignIn />
     },
     {
-        path: '/home',
-        element: <HomeView />
+        path: '/signin',
+        element: <SignIn />
+    },
+    {
+        path: '/signup',
+        element: <SignUp />
     }
 ]);
 export default router;
