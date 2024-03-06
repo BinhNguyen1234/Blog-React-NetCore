@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 import Frame from './Frames';
 
-export default function Galaxy({fast}: {fast: boolean}) {
+export default function Galaxy() {
     const Frames = useMemo(() => {
         const t = [];
-        for (let i = 0; i < 3; i++) {
-            t.push(<Frame key={i} fast={fast} index={i}></Frame>);
+        for (let i = 0; i < 4; i++) {
+            t.push(<Frame key={i} index={i}></Frame>);
         }
         return t;
-    }, [fast]);
+    },[]);
     return (
         <div
             style={{

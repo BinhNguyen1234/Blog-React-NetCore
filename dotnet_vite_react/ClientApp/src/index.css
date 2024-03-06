@@ -18,7 +18,7 @@
       opacity: 0;
     }
     100% {
-      transform: rotate(50deg) scale(600%);
+      transform: rotate(40deg) scale(600%);
     }
   } 
 .Main {
@@ -42,13 +42,16 @@
 
 }
 .Galaxy-frame0 {
-    animation: Scale 5s ease-in infinite;
+    animation: Scale 10s ease-in infinite;
 }
 .Galaxy-frame1 {
-    animation: Scale 15s ease-in 5s infinite;
+    animation: Scale 8s ease-in 3s infinite;
 }
 .Galaxy-frame2 {
-    animation: Scale 15s ease-in 10s infinite;
+    animation: Scale 8s ease-in 8s infinite;
+}
+.Galaxy-frame4 {
+    animation: Scale 10s ease-in 5s infinite;
 }
 .Fast.Galaxy-frame0 {
     animation: Scale 1s ease-in infinite;
@@ -117,11 +120,6 @@
     animation:
         texttype 2s steps(40, end) forwards,
         blink-caret 0.3s step-end 10;
-}
-.text2 {
-    animation:
-        texttype 2s steps(40, end) 2s forwards,
-        blink-caret 0.3s step-end 2s 10;
 }
 #login {
     margin: 0px;

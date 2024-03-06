@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:8000",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev -- --strictPort --debug --port 8000",
+"WorkingDirectory": "D:\\Blog-React-NetCore\\dotnet_vite_react\\ClientApp\\",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

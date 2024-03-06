@@ -17,6 +17,7 @@
         "@mui/base": "^5.0.0-beta.37",
         "@reduxjs/toolkit": "^2.2.1",
         "@types/node": "^20.11.20",
+        "lodash.debounce": "^4.0.8",
         "prettier": "^3.2.5",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -28,6 +29,7 @@
     },
     "devDependencies": {
         "@rollup/plugin-node-resolve": "^15.2.3",
+        "@types/lodash.debounce": "^4.0.9",
         "@types/react": "^18.2.58",
         "@types/react-dom": "^18.2.19",
         "@typescript-eslint/eslint-plugin": "^7.0.2",

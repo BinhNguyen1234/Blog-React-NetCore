@@ -1,7 +1,7 @@
-import { ReactNode, useMemo } from 'react';
+import { useMemo } from 'react';
 import Star from './Star';
 
-export default function Frame({ index,fast }: { index: number, fast: boolean }) {
+export default function Frame({ index }: { index: number }) {
     const t = useMemo(() => {
         const t = [];
         for (let i = 0; i < 60; i++) {
@@ -9,5 +9,5 @@ export default function Frame({ index,fast }: { index: number, fast: boolean }) 
         }
         return t;
     }, []);
-    return <div className={`Galaxy Galaxy-frame${index} ${fast && "Fast"}`}>{t}</div>;
+    return <div className={`Galaxy Galaxy-frame${index}`}>{t}</div>;
 }
